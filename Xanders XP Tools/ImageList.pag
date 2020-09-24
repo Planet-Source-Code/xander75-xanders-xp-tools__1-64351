@@ -1,0 +1,76 @@
+VERSION 5.00
+Begin VB.PropertyPage ImageList 
+   Caption         =   "PropertyPage1"
+   ClientHeight    =   3150
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   4905
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   3150
+   ScaleWidth      =   4905
+   Begin XandersXPTools.XandersXPButton cmdAdd 
+      Height          =   375
+      Left            =   240
+      TabIndex        =   1
+      Top             =   1920
+      Width           =   975
+      _ExtentX        =   1720
+      _ExtentY        =   661
+      Caption         =   "Add"
+      Enabled         =   -1  'True
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+   End
+   Begin VB.PictureBox pic16x16List 
+      Height          =   615
+      Left            =   240
+      ScaleHeight     =   555
+      ScaleWidth      =   4395
+      TabIndex        =   0
+      Top             =   1080
+      Width           =   4455
+   End
+   Begin VB.Image Image1 
+      Height          =   495
+      Index           =   0
+      Left            =   4080
+      Top             =   240
+      Width           =   615
+   End
+End
+Attribute VB_Name = "ImageList"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Private WithEvents ListImages As Image
+Attribute ListImages.VB_VarHelpID = -1
+Dim iCount As Integer
+Dim ImgLeft As Long
+
+Private Sub cmdAdd_Click()
+    Set ListImages = Controls.Add("VB.Image", "Image1" & CStr(iCount), pic16x16List)
+
+    With ListImages
+        .Visible = True
+        .Left = ImgLeft
+        .Top = 0
+        .Picture = LoadPicture("C:\Documents and Settings\amungall\Desktop\XP Icons\16x16\1.ico")
+    End With
+
+    iCount = iCount + 1
+    ImgLeft = ImgLeft + 240
+End Sub
+
+Private Sub PropertyPage_Initialize()
+    iCount = 1
+    ImgLeft = 0
+End Sub
+
